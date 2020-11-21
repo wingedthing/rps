@@ -1,26 +1,57 @@
-body {
+html, body {
   background-color: rgb(138, 128, 115);
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  
+}
+
+#main{
+  display: inline-flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  position: relative;
 }
 
 h1 {
   position: relative;
   text-align: center;
   font: outline;
-  font-size: 48px;
+  font-size: 3vw;
   font-family: 'Press Start 2P', monospace;
+  height: 20%;
 }
 
 #output {
   background-color:  rgb(7, 7, 7);
-  font-size: 20px;
+  font-size: 2vw;
   color:greenyellow;
   font-family: monospace;
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   justify-content: space-between;
-  float: left;
+  /* float: left; */
   width: 100%;
   height: 20%;
+  display: table;
+  
+}
+
+.allLines {
+  display: table-row;
+}
+
+#botBar {
+  position: relative;
+  margin: 0 auto;
+  padding: 5px;
+  text-align: center;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  
   
 }
 
@@ -32,21 +63,26 @@ h1 {
   width: 100%;
   display: flex;
   right: 5px;
+  flex-direction: row;
+  justify-content: left;
+  
 
 }
 
 .submissionField {
   width: 25%;
-  height: 30px;
-  font-size: 18px;
+  font-size: 1.5vw;
   background-color: rgba(0, 0, 0, 0.795);
   color: chartreuse;
   font-family: monospace;
+  position: relative;
+  display: inline-flex;
+  bottom: 10%;
 }
 
 .submissionButton {
-  font-size: large;
-  display: inline-block;
+  font-size: 1vw;
+  display: inline-flex;
   padding: 0.35em 1.2em;
   border: 0.1em solid #FFFFFF;
   margin:0 0.3em 0.3em 0;
@@ -57,9 +93,10 @@ h1 {
   color: #FFFFFF;
   position: relative;
   font-family: 'Press Start 2P', monospace;
-  font-size: large;
   text-align: center; 
   background-color:  rgb(138, 128, 115);
+  height: 100%;
+  bottom: 7%;
 }
 
 .submissionButton:hover{
@@ -67,30 +104,8 @@ h1 {
   background-color: #FFFFFF;
 }
 
-#audioContainer {
-  position: relative;
-  z-index: 1000;
-  display: flex;
-  float: left;
-  width: 100%;
-  height: 315px;
-  bottom: 367px;
-  background-color:transparent;
-
-}
-
-#play {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  color: chartreuse;
-  background-color: black;
-  font-family: 'Press Start 2P', monospace;
-  font-size: large;
-}
-
 #mute {
-  display: inline-block;
+  display: inline-flex;
   padding: 0.35em 1.2em;
   border: 0.1em solid #FFFFFF;
   margin:0 0.3em 0.3em 0;
@@ -99,24 +114,44 @@ h1 {
   text-decoration: none;
   transition: all 0.2s;
   color: #FFFFFF;
-  position: relative;
+  position: absolute;
   font-family: 'Press Start 2P', monospace;
-  font-size: large;
   text-align: center;
-  width: 150px;
-  height: 50px;
-  bottom: 732px;  
   background-color:  rgb(138, 128, 115);
+  top: 80%;
+  font-size: 1vw;
+  
 }
 
 #mute:hover{
   color: #000000;
   background-color: #FFFFFF;
 }
-@media all and (max-width:30em){
+
+#audioContainer {
+  z-index: 1000;
+  display: flex;
+  width: 100%;
+  height:100%;
+  margin: 0;
+  background-color:transparent;
+  position: fixed;
+  background-color: black;
+}
+
+#play {
+  width: 100%;
+  height: 100%;
+  color: chartreuse;
+  background-color: black;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 4vw;
+}
+
+/* @media all and (max-width:30em){
   #mute {
     display: block;
     margin: 0.4em auto;
 
   }
-}
+} */
