@@ -1,3 +1,4 @@
+
 class OppBuilder {
   constructor(name, behavior, catchPhrase, losingPhrase) {
     this._name = name;
@@ -29,11 +30,25 @@ class data{
   this.playerScore = 0;
   this.oppScore = 0;
   this.winningScore = 3;
-  this.round = undefined;
+  this.round = 1;
   this.hasWon = false;
   this.currentBracket = undefined;
   this.playerThrow = undefined;
   this.isGameOver = false;
+  this.hasWonRound = true;
+  this.bracket1 = [
+    [`${this.playerName} vs ${this.currentOpponent.name}`],
+    [`Gilgamesh vs Golith`],
+    [`Kronos vs Zeus`],
+    [`Marduk vs Kali`]
+  ],
+  this.bracket2 = [ 
+    [`${this.playerName} vs ${this.currentOpponent.name}`],
+    [`Kronos vs Kali`]
+  ],
+  this.bracket3 = [
+    [`${this.playerName} vs ${this.currentOpponent.name}`]
+  ]
   }
 
   reset() {
@@ -44,11 +59,12 @@ class data{
   this.playerScore = 0;
   this.oppScore = 0;
   this.winningScore = 3;
-  this.round = undefined;
+  this.round = 1;
   this.hasWon = false;
   this.currentBracket = undefined;
   this.playerThrow = undefined;
   this.isGameOver = false;
+  this.hasWonRound = true;
   }
 }
 
