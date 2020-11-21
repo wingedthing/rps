@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,39 +13,47 @@
   <title>RockPaperScissors</title>
 </head>
 <body>
+<div id="main">
   <div>
     <h1>Rock Paper Scissors Royale</h1>
   </div>
 
   <div id="output">
-    <div id="line1div">
-      <pre id="line1">Welcome to Mega Rock Paper Scissors Battle Royale!!</pre>
+    <div id="line1div" class="allLines">
+      <pre id="line1">-</pre>
     </div>
-    <div id=line2div>
-      <pre id="line2">Choose game mode:</pre>
+    <div id=line2div class="allLines">
+      <pre id="line2">-</pre>
     </div>
-    <div id="line3div">
-      <pre id="line3">1 - One Time Battle</pre>
+    <div id="line3div" class="allLines">
+      <pre id="line3">-</pre>
     </div>
-    <div id="line4div">
-      <pre id="line4">2 - Tournament</pre>
+    <div id="line4div" class="allLines">
+      <pre id="line4">-</pre>
     </div>
-    <div id="line5div">
-      <pre id="line5">q - to Quit</pre>
+    <div id="line5div" class="allLines">
+      <pre id="line5">-</pre>
+    </div>
+    <div id="line6div" class="allLines">
+      <pre id="line6">-</pre>
     </div>
   </div>
 
-  <div>
+  <div id="botBar">
     <form action="#" id="myform" onsubmit="enterData();return false;">
       <input class="submissionField" type="text" size="10" aria-label="subField" id="field"/>
       <input class="submissionButton" type="button" id="btnsubmit" value="Submit" onclick="enterData()"/>
     </form>
+    <button class="show" id="mute">Mute</button>
   </div>
+
   <div id="audioContainer">
     <audio id="player" loop="true" src="./sounds/Platformer2.mp3"></audio>
-    <button id="play" onclick="document.getElementById('player').play()">Click to Play</button> 
+    <button id="play" onclick="document.getElementById('player').play()">
+      -Rock Paper Scissors-
+      Click to Play</button> 
   </div>
-  <button class="show" id="mute">Mute</button>
+</div>
 </body>
 </html>
 
