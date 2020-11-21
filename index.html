@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./style.css">
+  <link href="https://fonts.googleapis.com/css?family=Press Start 2P" rel="stylesheet" type="text/css">
+  <script type="text/javascript" src="./classes.js"></script>
+  <script  src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script type="text/javascript" src="./test.js"></script>
+  <title>RockPaperScissors</title>
+</head>
+<body>
+  <div>
+    <h1>Rock Paper Scissors Royale</h1>
+  </div>
+
+  <div id="output">
+    <div id="line1div">
+      <pre id="line1">Welcome to Mega Rock Paper Scissors Battle Royale!!</pre>
+    </div>
+    <div id=line2div>
+      <pre id="line2">Choose game mode:</pre>
+    </div>
+    <div id="line3div">
+      <pre id="line3">1 - One Time Battle</pre>
+    </div>
+    <div id="line4div">
+      <pre id="line4">2 - Tournament</pre>
+    </div>
+    <div id="line5div">
+      <pre id="line5">q - to Quit</pre>
+    </div>
+  </div>
+
+  <div>
+    <form action="#" id="myform" onsubmit="enterData();return false;">
+      <input class="submissionField" type="text" size="10" aria-label="subField" id="field"/>
+      <input class="submissionButton" type="button" id="btnsubmit" value="Submit" onclick="enterData()"/>
+    </form>
+  </div>
+  <div id="audioContainer">
+    <audio id="player" loop="true" src="./sounds/Platformer2.mp3"></audio>
+    <button id="play" onclick="document.getElementById('player').play()">Click to Play</button> 
+  </div>
+  <button class="show" id="mute">Mute</button>
+</body>
+</html>
+
