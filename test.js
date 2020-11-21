@@ -1,3 +1,5 @@
+
+
 const defaultOpp = new OppBuilder ('Opponent', -1, 'easterEgg', 'superEasterEgg');
 const gameData = new data();
 const samson = new OppBuilder('Samson', 1, "\"As long as I have my hair, I fear no one!\"");
@@ -7,11 +9,13 @@ const msg = {
   two : 'q - to Quit',
   three : '2 - Tournament', 
   four : '1 - One Time Battle',
-  five : 'Choose game mode:'
+  five : 'Choose game mode:',
+  six : 'text'
 }
 let onOff = false;
 const printHead = ()=>{ 
   multiLine([
+  ' ',  
   'Welcome to Mega Rock Paper Scissors Battle Royale!!',
   'Choose game mode:',
   '1 - One Time Battle',
@@ -23,9 +27,10 @@ $(function(){
   $('#mute').toggle();
   $('#play').on('click', function(){
     $('#play').toggle();
+    $('#audioContainer').toggle();
+    printHead();
     $('#mute').toggle();
     $('#field').focus();
-
   });
   $('#mute').on('click', function(){
     if(onOff){
@@ -64,7 +69,10 @@ function rockPaperScissors(input) {
     gameData.gameMode = input;
   }
   if(gameData.gameMode === '2'){
-    output('Tournament Mode not supported yet. Coming Soon! Press Submit/Enter to restart.');
+    output('Tournament Mode coming soon!');
+    setTimeout(function(){
+      output('Press Submit/Enter to go back');
+    },1500);
     gameData.isGameOver = true;
     return;
   }
@@ -118,14 +126,22 @@ function oneTimeBattle(input) {
   if(gameData.oppScore === gameData.winningScore){
     gameData.hasWon = true;
     multiLine([`                 BEST OF ${gameData.bestOf}       `,`${gameData.playerName}'s Score:${gameData.playerScore} -- ${gameData.currentOpponent.name}'s Score:${gameData.oppScore}`]);
-    output(`You fought well ${gameData.playerName}, but it was not enough! Try again next time. Press Submit/Enter to play again!`);
+    output(`You fought well ${gameData.playerName}, but it was not enough! Try again next time.`);
+    setTimeout(function(){
+      output('Press Submit/Enter to play again!');
+    },1500);
     gameData.isGameOver = true;
     return false;
   }else if(gameData.playerScore === gameData.winningScore && gameData.currentOpponent.name !== 'Kali'){
     gameData.hasWon = true;
     multiLine([`                 BEST OF ${gameData.bestOf}       `,`${gameData.playerName}'s Score:${gameData.playerScore} -- ${gameData.currentOpponent.name}'s Score:${gameData.oppScore}`]);
-    multiLine([`You won the match!!! Congratulations ${gameData.playerName}!!!`,`Are you ready for a harder opponent? Press Submit/Enter to play again!`]);
-    gameData.isGameOver = true;
+    multiLine([`You won the match!!! Congratulations ${gameData.playerName}!!!`,`Are you ready for a harder opponent?`]);
+    if(gameData.currentOpponent === defaultOpp){
+      setTimeout(function(){
+        output('Press Submit/Enter to play again!');
+      },1500);
+      gameData.isGameOver = true;
+    }
     return true;
   }else if (gameData.playerScore === gameData.winningScore && gameData.currentOpponent.name === 'Kali') {
     hasWon = true;
@@ -188,13 +204,70 @@ function oneThrow(input, opponentName, behavior){
 
 }
 
+function tournamentMode(input){
+  if(gameData.playerName === 'Player 1'){
+    output('Enter your name: ');
+    gameData.playerName = undefined;
+    return;
+  }else if(gameData.playerName === undefined){
+    gameData.playerName = input;
+  }
+
+  if(gameData.hasWonRound){
+    gameData.bestOf = 5;
+    if(gameData.round === 1){
+      gameData.currentOpponent = samson;
+      gameData.hasWonRound = tournamentRound(1, samson, gameData.bracket1, input);
+      gameData.round++;
+      return;
+      
+    }
+    if(gameData.round === 2 && gameData.hasWonRound) {
+      gameData.currentOpponent = goliath;
+      gameData.hasWonRound = tournamentRound(2, goliath , gameData.bracket2, input);
+      gameData.round++
+      return;
+    }
+    if (gameData.round === 3 && gameData.hasWonRound) {
+      gameData.currentOpponent = kali;
+      gameData.hasWonRound = tournamentRound(3, kali , gameData.bracket3, input);
+      gameData.round++
+      return;
+      
+    }
+    if(gameData.round === 4 && gameData.hasWonRound){
+      output('You have won the Tournament of Power!!! You are the strongest in the world... for now.');
+      gameData.isGameOver = true;
+      gameData.hasWonRound = false;
+      setTimeout(function(){
+        output('Press Submit/Enter to play again!');
+      },1500);
+    }
+  }
+}
+
+function tournamentRound(round, opponent, bracket, input) {
+  if(round === 1){
+    multiLine([`ROUND ${round}`,`${bracket[0]}`,`${bracket[1]}`,`${bracket[2]}`,`${bracket[3]}`]);
+  }else if(round === 2){
+    multiLine([`ROUND ${round}`,`${bracket[0]}`,`${bracket[1]}`]);
+  }else if(round === 3){
+    multiLine([`ROUND ${round}`,`${bracket[0]}`]);
+  }
+  multiLine([`Prepare to battle ${opponent.name}!!!`,`${opponent.name} says:`]);
+  opponent.taunt('win');
+  return oneTimeBattle(input);
+}
+
 //displays input text on output div pushing each msg up on each iteration.
 function output(input) {
-  $('#line5').html(input)
-  $('#line4').html(msg.two)
-  $('#line3').html(msg.three)
-  $('#line2').html(msg.four)
-  $('#line1').html(msg.five)
+  $('#line6').html(input)
+  $('#line5').html(msg.two)
+  $('#line4').html(msg.three)
+  $('#line3').html(msg.four)
+  $('#line2').html(msg.five)
+  $('#line1').html(msg.six)
+  msg.six = msg.five;
   msg.five = msg.four;
   msg.four = msg.three;
   msg.three = msg.two; 
@@ -203,7 +276,7 @@ function output(input) {
 
 //takes an array with each element being a line of text to be dispayed in the output div
 function multiLine(textArr){ 
-    textArr.forEach(element => output(element));
+    textArr.forEach(element =>output(element))
 }
 
 //takes a value to be checked against an acceptable array of values.
