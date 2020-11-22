@@ -1,5 +1,3 @@
-
-
 const defaultOpp = new OppBuilder ('Opponent', -1, 'easterEgg', 'superEasterEgg');
 const gameData = new data();
 const samson = new OppBuilder('Samson', 1, "\"As long as I have my hair, I fear no one!\"");
@@ -126,7 +124,8 @@ function oneTimeBattle(input) {
   if(gameData.oppScore === gameData.winningScore){
     gameData.hasWon = true;
     multiLine([`                 BEST OF ${gameData.bestOf}       `,`${gameData.playerName}'s Score:${gameData.playerScore} -- ${gameData.currentOpponent.name}'s Score:${gameData.oppScore}`]);
-    output(`You fought well ${gameData.playerName}, but it was not enough! Try again next time.`);
+    output('You lost the match!')
+    gameOverPhrase()
     setTimeout(function(){
       output('Press Submit/Enter to play again!');
     },1500);
@@ -167,7 +166,7 @@ function oneThrow(input, opponentName, behavior){
   }
 
   let isWinner = false;
-  output("You ready yourself, The referee counts down \"3, 2, 1 THROW!\"");
+  preThrowPhrase();
   
   if(computerThrow == 0){
     computerThrow ='r';
