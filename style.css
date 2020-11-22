@@ -32,57 +32,43 @@ h1 {
   display: inline-flex;
   flex-direction: column;
   justify-content: space-between;
-  /* float: left; */
   width: 100%;
-  height: 20%;
+  height: 29vw;
   display: table;
   
-}
+  
+} */
 
 .allLines {
   display: table-row;
 }
 
-#botBar {
+/* #botBar {
+  display: table;
   position: relative;
-  margin: 0 auto;
-  padding: 5px;
-  text-align: center;
+  top: 550px;
+  right: 0;
+  min-width: 550px;
+  min-height: 550px;
   width: 100%;
-  display: flex;
-  flex-direction: row;
+  height: 20%;
   
-  
-}
+} */
 
-#myform {
-  position: relative;
-  margin: 0 auto;
-  padding: 5px;
-  text-align: center;
-  width: 100%;
-  display: flex;
-  right: 5px;
-  flex-direction: row;
-  justify-content: left;
-  
 
-}
 
 .submissionField {
-  width: 25%;
   font-size: 1.5vw;
   background-color: rgba(0, 0, 0, 0.795);
   color: chartreuse;
   font-family: monospace;
-  position: relative;
-  display: inline-flex;
-  bottom: 10%;
+  display: table-row;
+  width: 15vw;
+ 
 }
 
 .submissionButton {
   font-size: 1vw;
-  display: inline-flex;
   padding: 0.35em 1.2em;
   border: 0.1em solid #FFFFFF;
   margin:0 0.3em 0.3em 0;
@@ -91,12 +77,10 @@ h1 {
   text-decoration: none;
   transition: all 0.2s;
   color: #FFFFFF;
-  position: relative;
   font-family: 'Press Start 2P', monospace;
   text-align: center; 
   background-color:  rgb(138, 128, 115);
-  height: 100%;
-  bottom: 7%;
+  display: table-row;
 }
 
 .submissionButton:hover{
@@ -105,7 +89,6 @@ h1 {
 }
 
 #mute {
-  display: inline-flex;
   padding: 0.35em 1.2em;
   border: 0.1em solid #FFFFFF;
   margin:0 0.3em 0.3em 0;
@@ -114,12 +97,12 @@ h1 {
   text-decoration: none;
   transition: all 0.2s;
   color: #FFFFFF;
-  position: absolute;
   font-family: 'Press Start 2P', monospace;
   text-align: center;
   background-color:  rgb(138, 128, 115);
-  top: 80%;
   font-size: 1vw;
+  display: table-column;
+  
   
 }
 
