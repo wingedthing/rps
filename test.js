@@ -67,11 +67,12 @@ function rockPaperScissors(input) {
     gameData.gameMode = input;
   }
   if(gameData.gameMode === '2'){
-    output('Tournament Mode coming soon!');
-    setTimeout(function(){
-      output('Press Submit/Enter to go back');
-    },1500);
-    gameData.isGameOver = true;
+    tournamentMode(input);
+    // output('Tournament Mode coming soon!');
+    // setTimeout(function(){
+    //   output('Press Submit/Enter to go back');
+    // },1500);
+    // gameData.isGameOver = true;
     return;
   }
 
@@ -107,10 +108,10 @@ function oneTimeBattle(input) {
     multiLine([`                 BEST OF ${gameData.bestOf}       `,`${gameData.playerName}'s Score:${gameData.playerScore} -- ${gameData.currentOpponent.name}'s Score:${gameData.oppScore}`]);
     output('What will you throw? (r)ock, (p)aper, or (s)cissors?');
     gameData.playerThrow = '0';
-    return;
+    return true;
   }else if(gameData.hasWon === false && gameData.playerThrow == '0' && validate(input, ['R','P','S','r','p','s'])) {
     output('Enter a vaild throw: r, p, or s');
-    return;
+    return true;
   }else if(gameData.hasWon === false && gameData.playerThrow == '0') {
     result = oneThrow(input, gameData.currentOpponent.name, gameData.currentOpponent.behavior);
   }
@@ -141,10 +142,26 @@ function oneTimeBattle(input) {
       },1500);
       gameData.isGameOver = true;
     }
+    if(gameData.gameMode == '2') {
+        gameData.firstFight = true;
+        gameData.round++;
+        gameData.playerScore = 0;
+        gameData.oppScore = 0;
+        gameData.hasWon = false;
+        gameData.playerThrow = undefined;
+        tournamentMode();
+
+    }
     return true;
   }else if (gameData.playerScore === gameData.winningScore && gameData.currentOpponent.name === 'Kali') {
     hasWon = true;
     output(`You won the match!!! Congratulations ${gameData.playerName}!!!`);
+    output('You won the Tournament of Power!!! You are the strongest in the world... for now.');
+    gameData.isGameOver = true;
+    gameData.hasWonRound = false;
+    setTimeout(function(){
+      output('Press Submit/Enter to play again!');
+      },1500);
     return true;
   }
 
@@ -211,30 +228,28 @@ function tournamentMode(input){
   }else if(gameData.playerName === undefined){
     gameData.playerName = input;
   }
-
-  if(gameData.hasWonRound){
+  gameData.updateBrackets();
+  
+  if(true){
     gameData.bestOf = 5;
     if(gameData.round === 1){
       gameData.currentOpponent = samson;
       gameData.hasWonRound = tournamentRound(1, samson, gameData.bracket1, input);
-      gameData.round++;
       return;
       
     }
-    if(gameData.round === 2 && gameData.hasWonRound) {
+    if(gameData.round === 2 ) {
       gameData.currentOpponent = goliath;
       gameData.hasWonRound = tournamentRound(2, goliath , gameData.bracket2, input);
-      gameData.round++
       return;
     }
-    if (gameData.round === 3 && gameData.hasWonRound) {
+    if (gameData.round === 3 ) {
       gameData.currentOpponent = kali;
       gameData.hasWonRound = tournamentRound(3, kali , gameData.bracket3, input);
-      gameData.round++
       return;
       
     }
-    if(gameData.round === 4 && gameData.hasWonRound){
+    if(gameData.round === 4){
       output('You have won the Tournament of Power!!! You are the strongest in the world... for now.');
       gameData.isGameOver = true;
       gameData.hasWonRound = false;
@@ -248,13 +263,18 @@ function tournamentMode(input){
 function tournamentRound(round, opponent, bracket, input) {
   if(round === 1){
     multiLine([`ROUND ${round}`,`${bracket[0]}`,`${bracket[1]}`,`${bracket[2]}`,`${bracket[3]}`]);
+    console.log(gameData.pName)
   }else if(round === 2){
     multiLine([`ROUND ${round}`,`${bracket[0]}`,`${bracket[1]}`]);
   }else if(round === 3){
     multiLine([`ROUND ${round}`,`${bracket[0]}`]);
   }
+  if(gameData.firstFight) {
   multiLine([`Prepare to battle ${opponent.name}!!!`,`${opponent.name} says:`]);
   opponent.taunt('win');
+  gameData.firstFight = false;
+  }
+
   return oneTimeBattle(input);
 }
 
