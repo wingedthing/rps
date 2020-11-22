@@ -36,21 +36,36 @@ class data{
   this.isGameOver = false;
   this.hasWonRound = true;
   this.throwPhraseCounter = 0;
-  this.bracket1 = [
-    [`${this.playerName} vs ${this.currentOpponent.name}`],
-    [`Gilgamesh vs Golith`],
-    [`Kronos vs Zeus`],
-    [`Marduk vs Kali`]
-  ],
-  this.bracket2 = [ 
-    [`${this.playerName} vs ${this.currentOpponent.name}`],
-    [`Kronos vs Kali`]
-  ],
-  this.bracket3 = [
-    [`${this.playerName} vs ${this.currentOpponent.name}`]
-  ]
+  this.firstFight = true;
+  this.bracket1;
+  this.bracket2;
+  this.bracket3;
   }
 
+  get pName() {
+    return this.playerName;
+  }
+
+  get oName() {
+    return this.currentOpponent.name
+  }
+
+updateBrackets(){
+    this.bracket1 = [
+      [`${this.pName} vs ${this.oName}`],
+      [`Gilgamesh vs Golith`],
+      [`Kronos vs Zeus`],
+      [`Marduk vs Kali`]
+    ],
+    this.bracket2 = [ 
+      [`${this.pName} vs ${this.oName}`],
+      [`Kronos vs Kali`]
+    ],
+    this.bracket3 = [
+      [`${this.pName} vs ${this.oName}`]
+    ]
+  }
+  
   reset() {
   this.playerName = 'Player 1';
   this.currentOpponent = defaultOpp;
@@ -66,6 +81,7 @@ class data{
   this.isGameOver = false;
   this.hasWonRound = true;
   this.throwPhraseCounter = 0;
+  this.firstFight = true;
   }
 }
 
