@@ -87,7 +87,7 @@ updateBrackets(){
 
 function gameOverPhrase() {
   const arr = [
-    'You lost and your life as no meaning!!',
+    'You lost and your life has no meaning!!',
     'Is that the best you can do? Pathetic!',
     'Nice try.......Not!',
     'Maybe someday you\'ll get good?',
@@ -98,8 +98,8 @@ function gameOverPhrase() {
     'You think this is a game?! Well, guess what? You just lost.',
     'Your twisted and ruined body goes down in a hail of bullets...',
     'In Rock Paper Scissors Royale you win, or you die.',
-    'Shame, Shame, Shame',
-    'Time to eat your feelings'
+    'Shame, Shame, Shame...',
+    'Time to eat your feelings!'
   ];
   output(arr[Math.floor(Math.random() * 13)]);
 }
