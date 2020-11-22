@@ -149,8 +149,9 @@ function oneTimeBattle(input) {
         gameData.oppScore = 0;
         gameData.hasWon = false;
         gameData.playerThrow = undefined;
-        tournamentMode();
-
+        setTimeout(function(){
+          tournamentMode();
+        },2000);
     }
     return true;
   }else if (gameData.playerScore === gameData.winningScore && gameData.currentOpponent.name === 'Kali') {
