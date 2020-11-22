@@ -101,7 +101,7 @@ function gameOverPhrase() {
     'Shame, Shame, Shame...',
     'Time to eat your feelings!'
   ];
-  output(arr[Math.floor(Math.random() * 13)]);
+  output(arr[Math.floor(Math.random() * arr.length)]);
 }
 
 function preThrowPhrase() {
