@@ -1,4 +1,3 @@
-
 class OppBuilder {
   constructor(name, behavior, catchPhrase, losingPhrase) {
     this._name = name;
@@ -36,6 +35,7 @@ class data{
   this.playerThrow = undefined;
   this.isGameOver = false;
   this.hasWonRound = true;
+  this.throwPhraseCounter = 0;
   this.bracket1 = [
     [`${this.playerName} vs ${this.currentOpponent.name}`],
     [`Gilgamesh vs Golith`],
@@ -65,6 +65,39 @@ class data{
   this.playerThrow = undefined;
   this.isGameOver = false;
   this.hasWonRound = true;
+  this.throwPhraseCounter = 0;
   }
+}
+
+function gameOverPhrase() {
+  const arr = [
+    'You lost and your life as no meaning!!',
+    'Is that the best you can do? Pathetic!',
+    'Nice try.......Not!',
+    'Maybe someday you\'ll get good?',
+    'HAHAHAHAAHAH...loser.',
+    'This is a special easter egg msg! Only the dumbest players get to see it!',
+    'You should be ashamed of yourself.',
+    'GAME.....OVERRRRRR!!!',
+    'You think this is a game?! Well, guess what? You just lost.',
+    'Your twisted and ruined body goes down in a hail of bullets...',
+    'In Rock Paper Scissors Royale you win, or you die.',
+    'Shame, Shame, Shame',
+    'Time to eat your feelings'
+  ];
+  output(arr[Math.floor(Math.random() * 12)]);
+}
+
+function preThrowPhrase() {
+  const arr = [
+    "You ready yourself, The referee counts down \"3, 2, 1 THROW!\"",
+    'You feel your power rising, The referee counts down \"3, 2, 1 THROW!\"',
+    'You must go beyond! The referee counts down \"3, 2, 1 THROW!\"',
+    'It\'s now or never, The referee counts down \"3, 2, 1 THROW!\"',
+    'You unleash your full fury! The referee counts down \"3, 2, 1 THROW!\"'
+  ];
+  if(gameData.throwPhraseCounter > 4) gameData.throwPhraseCounter = 0;
+  output(arr[gameData.throwPhraseCounter]);
+  gameData.throwPhraseCounter++;
 }
 
