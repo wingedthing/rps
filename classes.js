@@ -13,9 +13,9 @@ class OppBuilder {
   }
   taunt(value) {
     if(value === 'win'){
-      output(this._winning);
+      return this._winning;
     }else if(value ==='lose') {
-      output(this._lose);
+      return this._lose;
     }
   }
 }
@@ -97,11 +97,11 @@ function gameOverPhrase() {
     'GAME.....OVERRRRRR!!!',
     'You think this is a game?! Well, guess what? You just lost.',
     'Your twisted and ruined body goes down in a hail of bullets...',
-    'In Rock Paper Scissors Royale you win, or you die.',
-    'Shame, Shame, Shame...',
-    'Time to eat your feelings!'
+    'In Rock Paper Scissors Royale, you win or you die.',
+    'Shame, Shame, Shame',
+    'Time to eat your feelings'
   ];
-  output(arr[Math.floor(Math.random() * 13)]);
+  return (arr[Math.floor(Math.random() * arr.length)]);
 }
 
 function preThrowPhrase() {
@@ -113,7 +113,25 @@ function preThrowPhrase() {
     'You unleash your full fury! The referee counts down \"3, 2, 1 THROW!\"'
   ];
   if(gameData.throwPhraseCounter > 4) gameData.throwPhraseCounter = 0;
-  output(arr[gameData.throwPhraseCounter]);
+  multiLine([arr[gameData.throwPhraseCounter]],0,0,0,0);
   gameData.throwPhraseCounter++;
+}
+
+function delayedOutput(string, delay) {
+  setTimeout(function(){
+    output(string);
+  },delay);
+};
+
+function delayedMulti(arrOfStrings, initialDelay, addedDelay, indexToInsertDelay, insertDelayValue) {
+  for(let i = 0; i < arrOfStrings.length; i++){
+    if(indexToInsertDelay == i){
+      initialDelay += insertDelayValue;
+    }
+    delayedOutput(arrOfStrings[i], initialDelay);
+    initialDelay += addedDelay;
+  };
+
+
 }
 
