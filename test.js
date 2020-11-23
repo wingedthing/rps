@@ -21,6 +21,8 @@ const printHead = ()=>{
   'q - to Quit']);
 };
 
+const msgDelay = 100;
+
 $(function(){
   $('#mute').toggle();
   $('#play').on('click', function(){
@@ -60,7 +62,7 @@ function enterData(){
 
 function rockPaperScissors(input) {
   if(gameData.gameMode === undefined && validate(input, ['q','1','2'] )) {
-    multiLine(['Ivalid game mode','Choose game mode:','1 - One Time Battle','2 - Tournament','q - to Quit']);
+    delayedMulti(['Ivalid game mode','Choose game mode:','1 - One Time Battle','2 - Tournament','q - to Quit'],0,msgDelay,1,1000);
     return;
   }
   if(gameData.gameMode == undefined) {
@@ -68,11 +70,6 @@ function rockPaperScissors(input) {
   }
   if(gameData.gameMode === '2'){
     tournamentMode(input);
-    // output('Tournament Mode coming soon!');
-    // setTimeout(function(){
-    //   output('Press Submit/Enter to go back');
-    // },1500);
-    // gameData.isGameOver = true;
     return;
   }
 
@@ -86,7 +83,7 @@ function rockPaperScissors(input) {
     gameData.bestOf = '0';
     return;
   }else if(gameData.bestOf == '0' && validate(input, ['3','5','b'])) {
-    output('Invalid input. Best of 3 or 5? or (b) to go back. ');
+    delayedMulti(['Invalid input.','Best of 3 or 5? or (b) to go back.'], 0,0,1,1000);
     return;
   }else if(gameData.bestOf == '0' && input == 'b'){
     gameData.reset();
@@ -105,11 +102,16 @@ function oneTimeBattle(input) {
   }
   
   if(gameData.hasWon === false && gameData.playerThrow === undefined ){
-    multiLine([`                 BEST OF ${gameData.bestOf}       `,`${gameData.playerName}'s Score:${gameData.playerScore} -- ${gameData.currentOpponent.name}'s Score:${gameData.oppScore}`]);
-    output('What will you throw? (r)ock, (p)aper, or (s)cissors?');
+    if(gameData.gameMode == '2'){
+    delayedMulti([`                 BEST OF ${gameData.bestOf}       `,`${gameData.playerName}'s Score:${gameData.playerScore} -- ${gameData.currentOpponent.name}'s Score:${gameData.oppScore}`],3400,msgDelay,0,0);
+    delayedMulti(['What will you throw? (r)ock, (p)aper, or (s)cissors?'],3700,msgDelay,0,0);
+    }else {
+    delayedMulti([`                 BEST OF ${gameData.bestOf}       `,`${gameData.playerName}'s Score:${gameData.playerScore} -- ${gameData.currentOpponent.name}'s Score:${gameData.oppScore}`],0,msgDelay,0,0);
+    delayedMulti(['What will you throw? (r)ock, (p)aper, or (s)cissors?'],200,msgDelay,0,0);
+    }
     gameData.playerThrow = '0';
     return true;
-  }else if(gameData.hasWon === false && gameData.playerThrow == '0' && validate(input, ['R','P','S','r','p','s'])) {
+  }else if(gameData.hasWon === false && gameData.playerThrow == '0' && validate(input, ['R','P','S','r','p','s','+','-'])) {
     output('Enter a vaild throw: r, p, or s');
     return true;
   }else if(gameData.hasWon === false && gameData.playerThrow == '0') {
@@ -124,22 +126,22 @@ function oneTimeBattle(input) {
   
   if(gameData.oppScore === gameData.winningScore){
     gameData.hasWon = true;
-    multiLine([`                 BEST OF ${gameData.bestOf}       `,`${gameData.playerName}'s Score:${gameData.playerScore} -- ${gameData.currentOpponent.name}'s Score:${gameData.oppScore}`]);
-    output('You lost the match!')
-    gameOverPhrase()
+    delayedMulti([`                 BEST OF ${gameData.bestOf}       `,`${gameData.playerName}'s Score:${gameData.playerScore} -- ${gameData.currentOpponent.name}'s Score:${gameData.oppScore}`],3400,msgDelay,0,0);
+    delayedMulti(['YOU LOST THE MATCH!'],3700,msgDelay,0,0)
+    delayedMulti([gameOverPhrase()],4000,msgDelay,0,0)
     setTimeout(function(){
       output('Press Submit/Enter to play again!');
-    },1500);
+    },6000);
     gameData.isGameOver = true;
     return false;
   }else if(gameData.playerScore === gameData.winningScore && gameData.currentOpponent.name !== 'Kali'){
     gameData.hasWon = true;
-    multiLine([`                 BEST OF ${gameData.bestOf}       `,`${gameData.playerName}'s Score:${gameData.playerScore} -- ${gameData.currentOpponent.name}'s Score:${gameData.oppScore}`]);
-    multiLine([`You won the match!!! Congratulations ${gameData.playerName}!!!`,`Are you ready for a harder opponent?`]);
+    delayedMulti([`                 BEST OF ${gameData.bestOf}       `,`${gameData.playerName}'s Score:${gameData.playerScore} -- ${gameData.currentOpponent.name}'s Score:${gameData.oppScore}`],3400,msgDelay,0,0);
+    delayedMulti([`You won the match!!! Congratulations ${gameData.playerName}!!!`,`Are you ready for a harder opponent?`],3700,msgDelay,0,0);
     if(gameData.currentOpponent === defaultOpp){
       setTimeout(function(){
         output('Press Submit/Enter to play again!');
-      },1500);
+      },5700);
       gameData.isGameOver = true;
     }
     if(gameData.gameMode == '2') {
@@ -151,23 +153,23 @@ function oneTimeBattle(input) {
         gameData.playerThrow = undefined;
         setTimeout(function(){
           tournamentMode();
-        },2000);
+        },4700);
     }
     return true;
   }else if (gameData.playerScore === gameData.winningScore && gameData.currentOpponent.name === 'Kali') {
     hasWon = true;
-    output(`You won the match!!! Congratulations ${gameData.playerName}!!!`);
-    output('You won the Tournament of Power!!! You are the strongest in the world... for now.');
+    delayedMulti([`You won the match!!! Congratulations ${gameData.playerName}!!!`],3700,msgDelay,0,0);
+    delayedMulti(['You won the Tournament of Power!!! You are the strongest in the world... for now.'],5700,msgDelay,0,0);
     gameData.isGameOver = true;
     gameData.hasWonRound = false;
     setTimeout(function(){
       output('Press Submit/Enter to play again!');
-      },1500);
+      },8700);
     return true;
   }
 
-  multiLine([`                 BEST OF ${gameData.bestOf}       `,`${gameData.playerName}'s Score:${gameData.playerScore} -- ${gameData.currentOpponent.name}'s Score:${gameData.oppScore}`]);
-  output('What will you throw? (r)ock, (p)aper, or (s)cissors?');
+  delayedMulti([`                 BEST OF ${gameData.bestOf}       `,`${gameData.playerName}'s Score:${gameData.playerScore} -- ${gameData.currentOpponent.name}'s Score:${gameData.oppScore}`],3400,msgDelay,0,0);
+  delayedMulti(['What will you throw? (r)ock, (p)aper, or (s)cissors?'],3700,0,0,0);
 }
 
 //handles a single throw of rock paper scissors
@@ -188,34 +190,40 @@ function oneThrow(input, opponentName, behavior){
   
   if(computerThrow == 0){
     computerThrow ='r';
-    output(`${opponentName} threw Rock!!!`);
+    delayedOutput([`${opponentName} threw Rock!!!`],1000);
     if(playerThrow === 'p') {
       isWinner = true;
     }
   }else if(computerThrow === 1) {
     computerThrow = 'p';
-    output(`${opponentName} threw Paper!!!`);
+    delayedOutput([`${opponentName} threw Paper!!!`],1000);
     if(playerThrow === 's'){
       isWinner = true;
     }
   }else {
     computerThrow = 's';
-    output(`${opponentName} threw Scissors!!!`);
+    delayedOutput([`${opponentName} threw Scissors!!!`],1000);
     if(playerThrow === 'r') {
       isWinner = true;
     }
   }
 
   if(computerThrow === playerThrow){
-    output('A tie');
+    delayedOutput(['A tie'],2000);
     return
+  }
+  if(playerThrow == '+'){
+    isWinner = true;
+  }
+  if(playerThrow == '-'){
+    isWinner = false;
   }
 
   if(isWinner){
-    output('You won this round!')
+    delayedOutput(['You won this round!'],2000)
     return 'win';
   }else {
-    output('You lost this round!')
+    delayedOutput(['You lost this round!'],2000)
     return 'loss';
   }
 
@@ -229,23 +237,25 @@ function tournamentMode(input){
   }else if(gameData.playerName === undefined){
     gameData.playerName = input;
   }
-  gameData.updateBrackets();
   
   if(true){
     gameData.bestOf = 5;
     if(gameData.round === 1){
       gameData.currentOpponent = samson;
+      gameData.updateBrackets();
       gameData.hasWonRound = tournamentRound(1, samson, gameData.bracket1, input);
       return;
       
     }
     if(gameData.round === 2 ) {
       gameData.currentOpponent = goliath;
+      gameData.updateBrackets();
       gameData.hasWonRound = tournamentRound(2, goliath , gameData.bracket2, input);
       return;
     }
     if (gameData.round === 3 ) {
       gameData.currentOpponent = kali;
+      gameData.updateBrackets();
       gameData.hasWonRound = tournamentRound(3, kali , gameData.bracket3, input);
       return;
       
@@ -262,17 +272,16 @@ function tournamentMode(input){
 }
 
 function tournamentRound(round, opponent, bracket, input) {
-  if(round === 1){
+  if(round === 1 && gameData.firstFight){
     multiLine([`ROUND ${round}`,`${bracket[0]}`,`${bracket[1]}`,`${bracket[2]}`,`${bracket[3]}`]);
     console.log(gameData.pName)
-  }else if(round === 2){
+  }else if(round === 2 && gameData.firstFight){
     multiLine([`ROUND ${round}`,`${bracket[0]}`,`${bracket[1]}`]);
-  }else if(round === 3){
+  }else if(round === 3 && gameData.firstFight){
     multiLine([`ROUND ${round}`,`${bracket[0]}`]);
   }
   if(gameData.firstFight) {
-  multiLine([`Prepare to battle ${opponent.name}!!!`,`${opponent.name} says:`]);
-  opponent.taunt('win');
+  delayedMulti([`Prepare to battle ${opponent.name}!!!`,`${opponent.name} says:`, opponent.taunt('win')],3000,msgDelay,0,0);
   gameData.firstFight = false;
   }
 
