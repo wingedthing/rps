@@ -18,7 +18,6 @@ html, body {
 h1 {
   position: relative;
   text-align: center;
-  font: outline;
   font-size: 3vw;
   font-family: 'Press Start 2P', monospace;
   height: 20%;
@@ -34,10 +33,13 @@ h1 {
   justify-content: space-between;
   width: 100%;
   height: 29vw;
+  max-height: 29vw;
+  min-height: 39vw;
   display: table;
+  /* margin: 0 auto; */
   
   
-} */
+} 
 
 .allLines {
   display: table-row;
@@ -49,6 +51,8 @@ h1 {
   color: chartreuse;
   font-family: monospace;
   display: table-row;
+  float: left;
+  max-width: 100%;
   width: 15vw;
  
 }
@@ -67,6 +71,7 @@ h1 {
   text-align: center; 
   background-color:  rgb(138, 128, 115);
   display: table-row;
+  float: left;
 }
 
 .submissionButton:hover{
@@ -87,8 +92,13 @@ h1 {
   text-align: center;
   background-color:  rgb(138, 128, 115);
   font-size: 1vw;
-  display: table-column;
-  
+  display: table-row;
+  float: left;
+  position: relative;
+  max-width: 10%;
+  min-width: 10%;
+  top: 2.5vw;
+  right: 24vw;
   
 }
 
@@ -115,6 +125,33 @@ h1 {
   background-color: black;
   font-family: 'Press Start 2P', monospace;
   font-size: 4vw;
+}
+
+.throw-button {
+  background-color: white;
+  box-shadow: #000000;
+  position: relative;
+  right: 5vw;
+  display: table-row;
+  display: inline-flex;
+}
+
+
+.button-img {
+  height: 4.5vw;
+  width: 4.5vw;
+  border-radius: 100%;
+  padding:0;
+  max-width: 4vw;
+  max-height: 4vw;
+  background: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: all 0.5s ease;
+  display: table-row;
+  display: inline-flex;
+  position: relative;
+  
 }
 
 /* @media all and (max-width:30em){
