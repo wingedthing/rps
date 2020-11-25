@@ -1,4 +1,4 @@
-const defaultOpp = new OppBuilder ('Opponent', -1, 'easterEgg', 'superEasterEgg');
+const defaultOpp = new OppBuilder ('Opponent', -1);
 const gameData = new data();
 const samson = new OppBuilder('Samson', 1, "\"As long as I have my hair, I fear no one!\"", "Samson says: My hair! My beautiful hair!" );
 const goliath =  new OppBuilder('Goliath', 2, '\"No mortal can stand against me! Wait, what are you doing with that sling?\"', "Goliath says: AHH! You shot me right in the eye!" );
