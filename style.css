@@ -6,6 +6,46 @@ html, body {
   
 }
 
+#container { display:block; }
+
+@media only screen and (orientation:portrait){
+
+  #container {
+
+    height: 100vw;
+
+    -webkit-transform: rotate(90deg);
+
+    -moz-transform: rotate(90deg);
+
+    -o-transform: rotate(90deg);
+
+    -ms-transform: rotate(90deg);
+
+    transform: rotate(90deg);
+
+  }
+
+}
+
+@media only screen and (orientation:landscape){
+
+  #container {
+
+     -webkit-transform: rotate(0deg);
+
+     -moz-transform: rotate(0deg);
+
+     -o-transform: rotate(0deg);
+
+     -ms-transform: rotate(0deg);
+
+     transform: rotate(0deg);
+
+  }
+
+}
+
 #main{
   display: inline-flex;
   flex-direction: column;
@@ -36,9 +76,6 @@ h1 {
   max-height: 29vw;
   min-height: 39vw;
   display: table;
-  /* margin: 0 auto; */
-  
-  
 } 
 
 .allLines {
@@ -97,9 +134,9 @@ h1 {
   position: relative;
   max-width: 10%;
   min-width: 10%;
-  top: 2.5vw;
-  right: 24vw;
-  
+  top: -2vw;
+  right: 0vw;
+
 }
 
 #mute:hover{
@@ -130,7 +167,7 @@ h1 {
 .throw-button {
   background-color: white;
   position: relative;
-  right: 5vw;
+  right: 0vw;
   display: table-row;
   display: inline-flex;
 }
@@ -152,11 +189,3 @@ h1 {
   position: relative;
   
 }
-
-/* @media all and (max-width:30em){
-  #mute {
-    display: block;
-    margin: 0.4em auto;
-
-  }
-} */
