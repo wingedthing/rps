@@ -123,6 +123,7 @@ function delayedOutput(string, delay) {
   },delay);
 };
 
+//allows for delayed output to divs of lines of text
 function delayedMulti(arrOfStrings, initialDelay, addedDelay, indexToInsertDelay, insertDelayValue) {
   for(let i = 0; i < arrOfStrings.length; i++){
     if(indexToInsertDelay == i){
