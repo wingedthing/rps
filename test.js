@@ -1,8 +1,8 @@
-const defaultOpp = new OppBuilder ('Opponent', -1, 'easterEgg', 'superEasterEgg');
+const defaultOpp = new OppBuilder ('Opponent', -1);
 const gameData = new data();
-const samson = new OppBuilder('Samson', 1, "\"As long as I have my hair, I fear no one!\"");
-const goliath =  new OppBuilder('Goliath', 2, '\"No mortal can stand against me! Wait, what are you doing with that sling?\"' );
-const kali = new OppBuilder('Kali', -1, "\"Now I am become death, the destroyer of worlds.\"");
+const samson = new OppBuilder('Samson', 1, "\"As long as I have my hair, I fear no one!\"", "Samson says: My hair! My beautiful hair!" );
+const goliath =  new OppBuilder('Goliath', 2, '\"No mortal can stand against me! Wait, what are you doing with that sling?\"', "Goliath says: AHH! You shot me right in the eye!" );
+const kali = new OppBuilder('Kali', -1, "\"Now I am become death, the destroyer of worlds.\"", "Kali says: I'm melting, I'm melting, MELTING!" );
 const msg = {
   two : 'q - to Quit',
   three : '2 - Tournament', 
@@ -23,6 +23,7 @@ const printHead = ()=>{
 
 const msgDelay = 100;
 
+//handles the display and function of the mute button and opening screen
 $(function(){
   $('#mute').toggle();
   $('#play').on('click', function(){
@@ -46,6 +47,19 @@ $(function(){
   });
 });
 
+$(function(){
+  $('#rock').on('click', function(){
+    rockPaperScissors('r');
+  });
+  $('#paper').on('click', function(){
+    rockPaperScissors('p');
+  });
+  $('#scissors').on('click', function(){
+    rockPaperScissors('s');
+  });
+});
+
+
 //handles player entry of data from submit fields
 function enterData(){
   let $playerInput = $('#myform :input').val();
@@ -59,6 +73,7 @@ function enterData(){
   if($playerInput == '')return
   rockPaperScissors($playerInput);
 }
+
 
 //main function that gets called at start of game, determines gamemode
 //calls oneTimeBattle or tournamentMode
@@ -142,7 +157,10 @@ function oneTimeBattle(input) {
   }else if(gameData.playerScore === gameData.winningScore && gameData.currentOpponent.name !== 'Kali'){
     gameData.hasWon = true;
     delayedMulti([`                 BEST OF ${gameData.bestOf}       `,`${gameData.playerName}'s Score:${gameData.playerScore} -- ${gameData.currentOpponent.name}'s Score:${gameData.oppScore}`],3400,msgDelay,0,0);
-    delayedMulti([`You won the match!!! Congratulations ${gameData.playerName}!!!`,`Are you ready for a harder opponent?`],3700,msgDelay,0,0);
+    delayedMulti([`You won the match!!! Congratulations ${gameData.playerName}!!!`,`Are you ready for a harder opponent?`],3700,msgDelay,0,0);<<<<<<< gh-pages
+    if(gameData.currentOpponent !== defaultOpp){
+    delayedMulti([gameData.currentOpponent.taunt('lose')],4700,msgDelay,0,0);
+    }
     if(gameData.currentOpponent === defaultOpp){
       setTimeout(function(){
         output('Press Submit/Enter to play again!');
@@ -158,13 +176,14 @@ function oneTimeBattle(input) {
         gameData.playerThrow = undefined;
         setTimeout(function(){
           tournamentMode();
-        },4700);
+        },6700);
     }
     return true;
   }else if (gameData.playerScore === gameData.winningScore && gameData.currentOpponent.name === 'Kali') {
     hasWon = true;
     delayedMulti([`You won the match!!! Congratulations ${gameData.playerName}!!!`],3700,msgDelay,0,0);
-    delayedMulti(['You won the Tournament of Power!!! You are the strongest in the world... for now.'],5700,msgDelay,0,0);
+    delayedMulti([gameData.currentOpponent.taunt('lose')],4700,msgDelay,0,0);
+    delayedMulti(['You won the Tournament of Power!!! You are the strongest in the world... for now.'],7700,msgDelay,0,0);
     gameData.isGameOver = true;
     gameData.hasWonRound = false;
     setTimeout(function(){

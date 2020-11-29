@@ -6,6 +6,46 @@ html, body {
   
 }
 
+#container { display:block; }
+
+@media only screen and (orientation:portrait){
+
+  #container {
+
+    height: 100vw;
+
+    -webkit-transform: rotate(90deg);
+
+    -moz-transform: rotate(90deg);
+
+    -o-transform: rotate(90deg);
+
+    -ms-transform: rotate(90deg);
+
+    transform: rotate(90deg);
+
+  }
+
+}
+
+@media only screen and (orientation:landscape){
+
+  #container {
+
+     -webkit-transform: rotate(0deg);
+
+     -moz-transform: rotate(0deg);
+
+     -o-transform: rotate(0deg);
+
+     -ms-transform: rotate(0deg);
+
+     transform: rotate(0deg);
+
+  }
+
+}
+
 #main{
   display: inline-flex;
   flex-direction: column;
@@ -18,7 +58,6 @@ html, body {
 h1 {
   position: relative;
   text-align: center;
-  font: outline;
   font-size: 3vw;
   font-family: 'Press Start 2P', monospace;
   height: 20%;
@@ -34,10 +73,11 @@ h1 {
   justify-content: space-between;
   width: 100%;
   height: 29vw;
+  max-height: 29vw;
+  min-height: 39vw;
   display: table;
+} 
   
-  
-}
 
 .allLines {
   display: table-row;
@@ -49,6 +89,8 @@ h1 {
   color: chartreuse;
   font-family: monospace;
   display: table-row;
+  float: left;
+  max-width: 100%;
   width: 15vw;
  
 }
@@ -67,6 +109,7 @@ h1 {
   text-align: center; 
   background-color:  rgb(138, 128, 115);
   display: table-row;
+  float: left;
 }
 
 .submissionButton:hover{
@@ -87,9 +130,14 @@ h1 {
   text-align: center;
   background-color:  rgb(138, 128, 115);
   font-size: 1vw;
-  display: table-column;
-  
-  
+  display: table-row;
+  float: left;
+  position: relative;
+  max-width: 10%;
+  min-width: 10%;
+  top: -2vw;
+  right: 0vw;
+
 }
 
 #mute:hover{
@@ -117,10 +165,30 @@ h1 {
   font-size: 4vw;
 }
 
-/* @media all and (max-width:30em){
-  #mute {
-    display: block;
-    margin: 0.4em auto;
+.throw-button {
+  background-color: white;
+  position: relative;
+  right: 0vw;
+  display: table-row;
+  display: inline-flex;
+}
 
-  }
-} */
+
+
+.button-img {
+  height: 4.5vw;
+  width: 4.5vw;
+  border-radius: 100%;
+  padding:0;
+  max-width: 4vw;
+  max-height: 4vw;
+  background: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: all 0.5s ease;
+  display: table-row;
+  display: inline-flex;
+  position: relative;
+  
+}
+

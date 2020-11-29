@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="mobile-web-app-capable" content="yes">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./style.css">
   <link href="https://fonts.googleapis.com/css?family=Press Start 2P" rel="stylesheet" type="text/css">
@@ -10,7 +11,7 @@
   <script type="text/javascript" src="./test.js"></script>
   <title>RockPaperScissors</title>
 </head>
-<body>
+<body id="container">
 <div id="main">
   <div>
     <h1>Rock Paper Scissors Royale</h1>
@@ -42,7 +43,16 @@
     <form action="#" id="myform" onsubmit="enterData();return false;">
       <input class="submissionField" type="text" size="10" aria-label="subField" id="field"/>
       <input class="submissionButton" type="button" id="btnsubmit" value="Submit" onclick="enterData()"/>
-    </form>
+      <button id="rock" type="button" class="throw-button">
+        <img class="button-img" src="/RockPaperScissors/svg/fist.svg" alt="">
+      </button>
+      <button id="paper" type="button" class="throw-button">
+        <img class="button-img" src="/RockPaperScissors/svg/paper.svg" alt="">
+      </button>
+      <button id="scissors" type="button" class="throw-button">
+        <img class="button-img" src="/RockPaperScissors/svg/Scissors.svg" alt="">
+      </button>
+    </form> 
     <button class="show" id="mute">Mute</button>
   </div>
 
