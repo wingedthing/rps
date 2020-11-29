@@ -59,7 +59,6 @@ $(function(){
   });
 });
 
-
 //handles player entry of data from submit fields
 function enterData(){
   let $playerInput = $('#myform :input').val();
@@ -73,6 +72,7 @@ function enterData(){
   if($playerInput == '')return
   rockPaperScissors($playerInput);
 }
+
 
 
 //main function that gets called at start of game, determines gamemode
@@ -157,7 +157,7 @@ function oneTimeBattle(input) {
   }else if(gameData.playerScore === gameData.winningScore && gameData.currentOpponent.name !== 'Kali'){
     gameData.hasWon = true;
     delayedMulti([`                 BEST OF ${gameData.bestOf}       `,`${gameData.playerName}'s Score:${gameData.playerScore} -- ${gameData.currentOpponent.name}'s Score:${gameData.oppScore}`],3400,msgDelay,0,0);
-    delayedMulti([`You won the match!!! Congratulations ${gameData.playerName}!!!`,`Are you ready for a harder opponent?`],3700,msgDelay,0,0);<<<<<<< gh-pages
+    delayedMulti([`You won the match!!! Congratulations ${gameData.playerName}!!!`,`Are you ready for a harder opponent?`],3700,msgDelay,0,0);
     if(gameData.currentOpponent !== defaultOpp){
     delayedMulti([gameData.currentOpponent.taunt('lose')],4700,msgDelay,0,0);
     }

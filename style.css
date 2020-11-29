@@ -77,7 +77,6 @@ h1 {
   min-height: 39vw;
   display: table;
 } 
-  
 
 .allLines {
   display: table-row;
@@ -174,7 +173,6 @@ h1 {
 }
 
 
-
 .button-img {
   height: 4.5vw;
   width: 4.5vw;
@@ -191,4 +189,3 @@ h1 {
   position: relative;
   
 }
-
