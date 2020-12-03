@@ -49,12 +49,15 @@ $(function(){
 
 $(function(){
   $('#rock').on('click', function(){
+    $('#field').focus();
     rockPaperScissors('r');
   });
   $('#paper').on('click', function(){
+    $('#field').focus();
     rockPaperScissors('p');
   });
   $('#scissors').on('click', function(){
+    $('#field').focus();
     rockPaperScissors('s');
   });
 });

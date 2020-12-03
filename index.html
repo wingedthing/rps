@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="mobile-web-app-capable" content="yes">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1, maximum-scale=1">
   <link rel="stylesheet" href="./style.css">
   <link href="https://fonts.googleapis.com/css?family=Press Start 2P" rel="stylesheet" type="text/css">
   <script type="text/javascript" src="./classes.js"></script>
@@ -53,7 +53,9 @@
         <img class="button-img" src="./svg/Scissors.svg" alt="Scissors">
       </button>
     </form> 
-    <button class="show" id="mute">Mute</button>
+    <div id="muteContainer">
+      <button class="show" id="mute">Mute</button>
+    </div>
   </div>
 
   <div id="audioContainer">
