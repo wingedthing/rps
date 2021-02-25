@@ -1,2 +1,9 @@
 # rps
-An html and javescript app to play rock paper scissors on a browser. Currently coded as a state machine as it does not use php. Could be the foundation of a web based game engine. 
+
+An app to play rock paper scissors in a browser. Styled to look like an old choose your own adventure console game!
+
+Built for the [Odin Project's](https://www.theodinproject.com/courses/foundations/lessons/rock-paper-scissors) Foundations course.
+
+**[Try the Live Version Here!](https://wingedthing.github.io/rps/)**
+
+![preview img](preview.jpg)
